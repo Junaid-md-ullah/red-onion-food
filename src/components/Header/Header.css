@@ -1,0 +1,33 @@
+.container{
+    display: inline-block;
+}
+.navbar{
+   border:none;
+   box-shadow: 0 0.5px 1px lightgray ;
+   position: sticky;
+}
+.navbar-brand img{
+    height: 50px;
+    margin-left: 45px;
+}
+
+.navbar-nav{
+    margin-right: 45px;
+}
+.nav-item{
+    padding-right: 20px;
+}
+.nav-item .cart{
+    color:black
+}
+.nav-item .login{
+    text-decoration: none;
+    color:gray
+}
+
+.nav-item .btn-rounded{
+    width: 90px;
+    border-radius: 30px;
+    background-color:#FF4565;
+    border-color: #FF4565;
+}
