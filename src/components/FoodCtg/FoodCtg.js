@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './FoodCtg.css';
 import foodData from '../../foodData/foodData';
-
+import { Link } from "react-router-dom";
 
 const FoodCtg = () => {
         const [foods,setFoods]=useState(foodData);
@@ -24,12 +24,15 @@ const FoodCtg = () => {
                 <div className="row d-flex align-items-center">
                     {
                         selectedFoods.map(food=>(
+                            
                             <div className="foodlist col-lg-4 col-md-6 col-sm-6">
                                 <div className="single-food-item">
+                                    <Link className="link" to={"/food/"+food.id}>
                                     <img src={food.img} alt=""/>
                                     <h3>{food.name}</h3>
-                                    <p>{food.short}</p>
+                                    <p><small>{food.short}</small></p>
                                     <h4>${food.price}</h4>
+                                    </Link>
                                 </div>
                             </div>
                         ))

@@ -8,6 +8,7 @@ import {
   Route,
 } from "react-router-dom";
 import FoodCtg from './components/FoodCtg/FoodCtg';
+import Food from './components/Food/Food';
 
 function App() {
   return (
@@ -18,6 +19,9 @@ function App() {
             <Route exact path="/">
               <Banner></Banner>
               <FoodCtg></FoodCtg>
+            </Route>
+            <Route path="/food/:foodId">
+              <Food></Food>
             </Route>
           </Switch>
         </Router>

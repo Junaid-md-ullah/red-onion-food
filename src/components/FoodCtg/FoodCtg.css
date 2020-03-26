@@ -24,7 +24,7 @@
     font-weight: bolder;
 }
 .catg-button button:hover{
-    transition: .20s ease-in-out;
+    transition:all .20s ease-in-out;
     color:red;
     border-bottom: 2px solid red;
     
@@ -36,15 +36,26 @@
     border:none;
 }
 .foodlist:hover{
-    box-shadow:  5px 5px 50px rgba(234,232,232,.48);
+    box-shadow:  5px 5px 10px grey;
     cursor: pointer;
 }
 .single-food-item{
     height:150px;
     justify-content: center;
+    color:black
 }
+
 .single-food-item img{
     /* height:250px; */
     width:60%;
     padding:15px
+}
+
+.link{
+    color:black
+}
+.link:hover{
+    text-decoration: none;
+    color:#FF4565;
+    transition: all 0.20s ease-in-out;
 }
