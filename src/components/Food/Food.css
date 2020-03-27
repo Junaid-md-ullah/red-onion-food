@@ -22,3 +22,15 @@
     margin-left: 15px;
     
 }
+.addCartBtn{
+    margin-top: 30px;
+    margin-left: -15px;
+}
+.addCartBtn .btn-rounded{
+    width: 120px;
+    border-radius: 30px;
+    background-color:#FF4565;
+    border-color: #FF4565;
+    color: white;
+
+}

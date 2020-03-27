@@ -9,6 +9,7 @@ import {
 } from "react-router-dom";
 import FoodCtg from './components/FoodCtg/FoodCtg';
 import Food from './components/Food/Food';
+import Login from './components/Login/Login';
 
 function App() {
   return (
@@ -23,6 +24,10 @@ function App() {
             <Route path="/food/:foodId">
               <Food></Food>
             </Route>
+            <Route path="/login">
+              <Login></Login>
+            </Route>
+
           </Switch>
         </Router>
     </div>
