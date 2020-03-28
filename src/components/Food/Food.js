@@ -5,18 +5,15 @@ import { useParams } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faCartArrowDown } from '@fortawesome/free-solid-svg-icons';
 
-const Food = () => {
+const Food = (props) => {
     const {foodId}=useParams();
     const selectedFood=foodData.find(food=>food.id==foodId);
     const [cartQuan,setCartQuan]=useState(1);
-    let a=1;
-    const addquan=()=>{
-        a=a+cartQuan;
-        setCartQuan(a);
-    }
-    const decquan=()=>{
-        a=cartQuan-a;
-        setCartQuan(a);
+    
+    const finalCartHandler=selectedFood=>{
+        selectedFood.quantity=cartQuan;
+        props.cartHandler(selectedFood);
+
     }
     return (
         <div>
@@ -29,13 +26,13 @@ const Food = () => {
                             <div className="price-cart d-flex">
                                 <h2 align="left"><strong>${selectedFood.price}</strong></h2>
                                 <div className="btn btn-wrap">
-                                    <button onClick={()=>decquan()} className="lock btn"><strong>-</strong></button>
+                                    <button onClick={()=>setCartQuan(cartQuan<=1? 1:cartQuan-1)} className="lock btn"><strong>-</strong></button>
                                     {cartQuan}
-                                    <button onClick={()=>addquan()} className="btn">+</button>
+                                    <button onClick={()=>setCartQuan(cartQuan+1)} className="btn">+</button>
                                 </div>
                             </div>
                             <div className="btn d-flex addCartBtn">
-                                <button className="btn btn-rounded"> <FontAwesomeIcon icon={faCartArrowDown} /> Add</button>
+                                <button onClick={()=> finalCartHandler(selectedFood)} className="btn btn-rounded"> <FontAwesomeIcon icon={faCartArrowDown} /> Add</button>
                             </div>
                         </div>
                     </div>

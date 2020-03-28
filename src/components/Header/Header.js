@@ -1,5 +1,6 @@
 import React from 'react';
 import './Header.css';
+import {Link} from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faCartPlus } from '@fortawesome/free-solid-svg-icons';
 import { useAuth } from '../Login/use-auth';
@@ -9,15 +10,15 @@ const Header = (props) => {
         <div className="main">
             <div className="container">
                 <nav className="navbar navbar-expand-lg navbar-light bg-light bg-white py-2 fixed-top d-flex justify-content-between ">
-                    <a className="navbar-brand" href="/">
+                    <Link className="navbar-brand" to="/">
                         <img src="https://i.ibb.co/g7hNrMG/logo2.png" alt=""/>
-                    </a>
+                    </Link>
                 <ul className="navbar-nav align-items-center">
                     <li className="nav-item">
-                        <a className="cart" href="/cart">
+                        <Link className="cart" to="/shipment">
                         <FontAwesomeIcon icon={faCartPlus} />
-                        <span className="badge bg-light">0</span>
-                        </a>
+                            <span className="badge bg-light">{props.cart.length}</span>
+                        </Link>
                     </li>
                     {
                         auth.user?
