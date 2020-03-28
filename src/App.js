@@ -10,10 +10,12 @@ import {
 import FoodCtg from './components/FoodCtg/FoodCtg';
 import Food from './components/Food/Food';
 import Login from './components/Login/Login';
+import { AuthProvider } from './components/Login/use-auth';
 
 function App() {
   return (
     <div className="App">
+      <AuthProvider>
       <Header></Header>
         <Router>
           <Switch>
@@ -24,12 +26,14 @@ function App() {
             <Route path="/food/:foodId">
               <Food></Food>
             </Route>
+
             <Route path="/login">
               <Login></Login>
             </Route>
 
           </Switch>
         </Router>
+        </AuthProvider>
     </div>
   );
 }

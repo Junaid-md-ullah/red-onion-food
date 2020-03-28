@@ -2,7 +2,9 @@ import React from 'react';
 import './Header.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faCartPlus } from '@fortawesome/free-solid-svg-icons';
-const Header = () => {
+import { useAuth } from '../Login/use-auth';
+const Header = (props) => {
+    const auth=useAuth();
     return (
         <div className="main">
             <div className="container">
@@ -17,13 +19,27 @@ const Header = () => {
                         <span className="badge bg-light">0</span>
                         </a>
                     </li>
+                    {
+                        auth.user?
+                    <span style={{color:'black'}}>{auth.user.displayName}</span>
+                    :
                     <li className="nav-item">
                         <a className="login" href="/login">Login</a>
                     </li>
+                    }
+                    
                     <li className="nav-item">
-                        <a href="/signup">
+                        {
+                            auth.user?
+                            <a href="/">
+                                 <button onClick={()=>{auth.signOut()}} className="btn btn-danger btn-rounded">Sign Out</button>
+                            </a>
+                            :
+                            <a href="/login">
                             <button className="btn btn-danger btn-rounded">Sign Up</button>
                         </a>
+                        }
+                        
                     </li>
 
                 </ul>
