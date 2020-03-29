@@ -3,7 +3,7 @@ import './FoodCtg.css';
 import foodData from '../../foodData/foodData';
 import { Link } from "react-router-dom";
 
-const FoodCtg = () => {
+const FoodCtg = (props) => {
         const [foods,setFoods]=useState(foodData);
         const[selectedFoodsCat,setSelectedFoodsCat]=useState("lunch");
         const selectedFoods=foods.filter(food=>food.category===selectedFoodsCat);
@@ -15,13 +15,13 @@ const FoodCtg = () => {
                 <div className="row d-flex align-items-center raw">
                     <div className="catg-button">
                         <button className="" onClick={()=>setSelectedFoodsCat("breakfast")}>Breakfast</button>
-                        <button className="active" onClick={()=>setSelectedFoodsCat("lunch")}>Lunch</button>
+                        <button className="active button-active" onClick={()=>setSelectedFoodsCat("lunch")}>Lunch</button>
                         <button className="" onClick={()=>setSelectedFoodsCat("dinner")}>Dinner</button>
 
                     </div>
                 </div>
 
-                <div className="row d-flex align-items-center">
+                <div className="row d-flex align-items-center justify-content-center">
                     {
                         selectedFoods.map(food=>(
                             
@@ -34,8 +34,19 @@ const FoodCtg = () => {
                                     <h4>${food.price}</h4>
                                     </Link>
                                 </div>
+                                
                             </div>
                         ))
+                    }
+                    {
+                        props.cart.length>0?
+                        <div>
+                            <Link to="/shipment"><button>Checkout Food Cart</button></Link>
+                        </div>
+                        :
+                        <div>
+                            <button disabled>No Food Cart</button>
+                        </div>
                     }
 
                 </div>

@@ -1,0 +1,48 @@
+.container-ship{
+    margin-top: 50px; 
+    height:600px;
+    text-align: start;
+    padding:30px;
+}
+
+.img-file img{
+    padding-left:30px;
+    width:90%
+}
+.details-wrapper{
+    padding:40px;
+    border-radius: 5px;
+    
+}
+.column4{
+    width:300px;
+    padding:20px
+}
+.shipping-container img{
+    width:20%;
+    margin-bottom: 10px;
+}
+.address{
+    border-radius: 5px;
+    padding:8px;
+}
+.delivery-time{
+    padding:8px;
+}
+.delivery-man{
+    padding:8px;
+    border-radius:5px;
+}
+.delivery-man img{
+    width:25%;
+    padding:8px;
+}
+.delivery-man-details{
+    padding:8px;
+}
+.contact{
+    margin-top: 10px;
+}
+.contact button{
+    width:260px;
+}

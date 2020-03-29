@@ -82,7 +82,7 @@ const Shipment = (props) => {
                                 {
                                     deliveryToDoor && RoadNo && flat && address ?
                                     <Link to="/orderdone">
-                                        <button className="btn btn-danger checkout-btn">Checkout</button>
+                                        <button className="btn btn-danger checkout-btn" onClick={()=>{props.clearCart()}}>Checkout</button>
                                     </Link>
                                     
                                     :

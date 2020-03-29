@@ -22,6 +22,9 @@ function App() {
   const deliveryDetailHandler=(data)=>{
     setDeliveryDet(data)
   }
+  const clearCart=()=>{
+    setCart([]);
+  }
   const cartHandler=(data)=>{
       const alreadyAdded=cart.find(crt=>crt.id==data.id);
       const newCart=[...cart,data];
@@ -53,7 +56,7 @@ function App() {
             <Route exact path="/">
             <Header cart={cart}></Header>
               <Banner></Banner>
-              <FoodCtg></FoodCtg>
+              <FoodCtg cart={cart}></FoodCtg>
             </Route>
             <Route path="/food/:foodId">
             <Header cart={cart}></Header>
@@ -66,9 +69,10 @@ function App() {
 
             <PrivateRoute path="/shipment">
                 <Header cart={cart}></Header>
-                <Shipment cart={cart} checkOutItemHandler={checkOutItemHandler} deliveryDetailHandler={deliveryDetailHandler} deliveryDet={deliveryDet}></Shipment>
+                <Shipment cart={cart} checkOutItemHandler={checkOutItemHandler} deliveryDetailHandler={deliveryDetailHandler} deliveryDet={deliveryDet} clearCart={clearCart}></Shipment>
             </PrivateRoute>
             <Route path="/orderdone">
+              <Header cart={cart}></Header>
               <OrderDone deliveryDet={deliveryDet}></OrderDone>
             </Route>
 
