@@ -10,11 +10,18 @@ import {
 import FoodCtg from './components/FoodCtg/FoodCtg';
 import Food from './components/Food/Food';
 import Login from './components/Login/Login';
-import { AuthProvider } from './components/Login/use-auth';
+import { AuthProvider,PrivateRoute } from './components/Login/use-auth';
 import Shipment from './components/Shipment/Shipment';
+import OrderDone from './components/OrderDone/OrderDone';
 
 function App() {
   const [cart,setCart]=useState([]);
+  const [deliveryDet,setDeliveryDet]=useState({
+    deliveryToDoor:null,RoadNo:null,flat:null,address:null
+  })
+  const deliveryDetailHandler=(data)=>{
+    setDeliveryDet(data)
+  }
   const cartHandler=(data)=>{
       const alreadyAdded=cart.find(crt=>crt.id==data.id);
       const newCart=[...cart,data];
@@ -22,7 +29,20 @@ function App() {
       if(alreadyAdded){
         const update=cart.filter(crt=>cart.id!=data)
         setCart(update);
+      }else{
+        const newCart=[...cart,data];
+        setCart(newCart);
       }
+  }
+  const checkOutItemHandler=(id,quan)=>{
+      const newCart=cart.map(item=>{
+        if(item.id==id){
+          item.quantity=quan;
+        }
+        return item;
+      })
+      const updateCart=newCart.filter(item=>item.quantity>0)
+      setCart(updateCart);
   }
   return (
     <div className="App">
@@ -44,8 +64,12 @@ function App() {
               <Login></Login>
             </Route>
 
-            <Route path="/shipment">
-                <Shipment cart={cart}></Shipment>
+            <PrivateRoute path="/shipment">
+                <Header cart={cart}></Header>
+                <Shipment cart={cart} checkOutItemHandler={checkOutItemHandler} deliveryDetailHandler={deliveryDetailHandler} deliveryDet={deliveryDet}></Shipment>
+            </PrivateRoute>
+            <Route path="/orderdone">
+              <OrderDone deliveryDet={deliveryDet}></OrderDone>
             </Route>
 
           </Switch>

@@ -22,10 +22,10 @@ const Header = (props) => {
                     </li>
                     {
                         auth.user?
-                    <span style={{color:'black'}}>{auth.user.displayName}</span>
+                    <span style={{color:'black',marginRight:'8px'}}>{auth.user.displayName}</span>
                     :
                     <li className="nav-item">
-                        <a className="login" href="/login">Login</a>
+                        <Link className="login" to="/login">Login</Link>
                     </li>
                     }
                     

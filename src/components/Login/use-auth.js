@@ -3,6 +3,7 @@ import * as firebase from "firebase/app";
 import "firebase/auth";
 import firebaseConfig from "../../firebase.config";
 import { createContext, useState } from "react";
+import {Route,Redirect} from 'react-router-dom'
 
 
 
@@ -10,6 +11,26 @@ import { createContext, useState } from "react";
 firebase.initializeApp(firebaseConfig);
 
 const AuthContext=createContext();
+export const PrivateRoute=({ children, ...rest })=> {
+    const auth=useAuth();
+    return (
+      <Route
+        {...rest}
+        render={({ location }) =>
+          auth.user ? (
+            children
+          ) : (
+            <Redirect
+              to={{
+                pathname: "/login",
+                state: { from: location }
+              }}
+            />
+          )
+        }
+      />
+    );
+  }
 export const AuthProvider=(props)=>{
     const auth=Auth();
     return<AuthContext.Provider value={auth}>{props.children}</AuthContext.Provider>

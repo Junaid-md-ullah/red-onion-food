@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Auth, { useAuth } from './use-auth';
+import {Link} from 'react-router-dom';
 import './Login.css'
 import { useForm } from 'react-hook-form';
 
@@ -28,7 +29,7 @@ const Login = () => {
 
                 <div className="container align-items-center">
                     <div className="sign-up-logo">
-                        <img src="https://i.ibb.co/g7hNrMG/logo2.png" alt=""/>
+                      <Link to="/"><img src="https://i.ibb.co/g7hNrMG/logo2.png" alt=""/></Link>  
                     </div>  
                 {
                     returningUser ?
