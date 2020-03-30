@@ -40,12 +40,12 @@ const FoodCtg = (props) => {
                     }
                     {
                         props.cart.length>0?
-                        <div>
-                            <Link to="/shipment"><button>Checkout Food Cart</button></Link>
+                        <div className="food-ctg-cart-btn">
+                            <Link to="/shipment"><button className="btn btn-danger">Checkout Food Cart</button></Link>
                         </div>
                         :
-                        <div>
-                            <button disabled>No Food Cart</button>
+                        <div className="food-ctg-cart-btn">
+                            <button className="btn btn-secondary" disabled>No Food In Cart</button>
                         </div>
                     }
 

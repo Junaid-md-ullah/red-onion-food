@@ -42,13 +42,20 @@
 .single-food-item{
     height:150px;
     justify-content: center;
-    color:black
+    color:black;
+    
 }
 
 .single-food-item img{
     /* height:250px; */
     width:60%;
     padding:15px
+}
+.food-ctg-cart-btn{
+    margin-top: 20px;
+}
+.food-ctg-cart-btn button{
+    width:200px;
 }
 
 .link{

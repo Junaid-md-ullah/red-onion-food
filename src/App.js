@@ -13,6 +13,7 @@ import Login from './components/Login/Login';
 import { AuthProvider,PrivateRoute } from './components/Login/use-auth';
 import Shipment from './components/Shipment/Shipment';
 import OrderDone from './components/OrderDone/OrderDone';
+import Extra from './components/Extra/Extra';
 
 function App() {
   const [cart,setCart]=useState([]);
@@ -57,6 +58,7 @@ function App() {
             <Header cart={cart}></Header>
               <Banner></Banner>
               <FoodCtg cart={cart}></FoodCtg>
+              <Extra></Extra>
             </Route>
             <Route path="/food/:foodId">
             <Header cart={cart}></Header>
