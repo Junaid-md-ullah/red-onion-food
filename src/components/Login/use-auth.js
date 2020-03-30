@@ -51,10 +51,10 @@ const Auth = ()=>{
                 window.history.back();
             })
         })
-        .catch(err=>{
+        .catch(error=>{
     
             setUser(null)
-            return err.message;
+            return error.message;
         })
     }
     const signIn=(email,password)=>{

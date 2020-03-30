@@ -14,9 +14,9 @@ const FoodCtg = (props) => {
             <div className="container">
                 <div className="row d-flex align-items-center raw">
                     <div className="catg-button">
-                        <button className="" onClick={()=>setSelectedFoodsCat("breakfast")}>Breakfast</button>
-                        <button className="active button-active" onClick={()=>setSelectedFoodsCat("lunch")}>Lunch</button>
-                        <button className="" onClick={()=>setSelectedFoodsCat("dinner")}>Dinner</button>
+                        <button className="nav-item" onClick={()=>setSelectedFoodsCat("breakfast")}> <span  to="breakfast" className={selectedFoodsCat === "breakfast" ?  "active nav-btn" : "nav-btn"}>Breakfast</span></button>
+                        <button className="nav-item" onClick={()=>setSelectedFoodsCat("lunch")}><span  to="breakfast" className={selectedFoodsCat === "lunch" ?  "active nav-btn" : "nav-btn"}>Lunch</span></button>
+                        <button className="nav-item" onClick={()=>setSelectedFoodsCat("dinner")}><span  to="breakfast" className={selectedFoodsCat === "dinner" ?  "active nav-btn" : "nav-btn"}>Dinner</span></button>
 
                     </div>
                 </div>

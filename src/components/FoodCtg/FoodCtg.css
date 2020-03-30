@@ -18,17 +18,30 @@
 
 .catg-button button{
     width:90px;
+    cursor: pointer;
     border: none;
     background-color: white;
     color:black;
     font-weight: bolder;
+    
 }
-.catg-button button:hover{
-    transition:all .20s ease-in-out;
+.catg-button .active{
+    color:red;
+}
+.catg-button .active::after{
+    content: "";
+    width: auto;
+    margin: 0 auto;
+    height: 2px;
+    background-color: rgb(255, 69, 101);
+    display: block;
+}
+/* .catg-button button:hover{
+    transition:all  0s ease-in-out;
     color:red;
     border-bottom: 2px solid red;
     
-}
+} */
 
 .foodlist{
     height:420px;

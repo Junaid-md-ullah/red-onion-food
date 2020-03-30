@@ -37,12 +37,12 @@ const Login = () => {
                         <form className="signin d-flex align-items-center justify-content-center flex-column form-group " onSubmit={handleSubmit(onSubmit)}>
                             
                             <input className="form-control" name="email" ref={register({ required: true })} placeholder="Email" />
-                            {/* errors will return when field validation fails  */}
-                            {errors.name && <span>This field is required</span>}
 
-                            <input className="form-control" name="password" ref={register({ required: true })} placeholder="Password" />
+                            {errors.email && <span style={{textAlign:'left',color:'red'}}>Email is required</span>}
+
+                            <input type="password" className="form-control" name="password" ref={register({ required: true })} placeholder="Password" />
                             {/* errors will return when field validation fails  */}
-                            {errors.name && <span>This field is required</span>}
+                            {errors.name && <span style={{textAlign:'left',color:'red'}}>Password is required</span>}
                             <button  type="submit" className="btn btn-danger signin-button">Sign In</button>
                                 <div className="option text-center">
                                     <label  onClick={() => setReturningUser(false)}>Create a new Account</label>
@@ -54,19 +54,23 @@ const Login = () => {
 
                 <input className="form-control" name="name" ref={register({ required: true })} placeholder="Name" />
                 {/* errors will return when field validation fails  */}
-                {errors.name && <span>This field is required</span>}
+                {errors.name && <span style={{textAlign:'left',color:'red'}}>Name is required</span>}
 
                 <input className="form-control" name="email" ref={register({ required: true })} placeholder="Email" />
                 {/* errors will return when field validation fails  */}
-                {errors.email && <span>This field is required</span>}
+                {errors.email && <span style={{textAlign:'left',color:'red'}}>Email field is required</span>}
 
-                <input className="form-control" name="password" ref={register({ required: true })} placeholder="Password" />
+                <input type="password" className="form-control" name="password" ref={register({ required: true })} placeholder="Password" />
                 {/* errors will return when field validation fails  */}
-                {errors.password && <span>This field is required</span>}
+                {errors.password && <span style={{textAlign:'left',color:'red'}}>Password is required</span>}
 
-                <input className="form-control" name="confirmpassword" ref={register({ required: true })} placeholder="Confirm Password" />
+                <input type="password" className="form-control" name="confirmpassword" ref={register({
+
+                validate:(value)=>value===watch('password')
+
+                 })} placeholder="Confirm Password" />
                 {/* errors will return when field validation fails  */}
-                {errors.confirmpassword && <span>This field is required</span>}
+                {errors.confirmpassword && <span style={{textAlign:'left',color:'red'}}>Password Don't Match</span>}
 
                 <button  type="submit" className="btn btn-danger signin-button">Sign Up</button>
 

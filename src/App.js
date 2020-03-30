@@ -14,6 +14,7 @@ import { AuthProvider,PrivateRoute } from './components/Login/use-auth';
 import Shipment from './components/Shipment/Shipment';
 import OrderDone from './components/OrderDone/OrderDone';
 import Extra from './components/Extra/Extra';
+import Footer from './components/Footer/Footer';
 
 function App() {
   const [cart,setCart]=useState([]);
@@ -59,10 +60,12 @@ function App() {
               <Banner></Banner>
               <FoodCtg cart={cart}></FoodCtg>
               <Extra></Extra>
+              <Footer></Footer>
             </Route>
             <Route path="/food/:foodId">
             <Header cart={cart}></Header>
               <Food cart={cart} cartHandler={cartHandler}></Food>
+              <Footer></Footer>
             </Route>
 
             <Route path="/login">
@@ -72,10 +75,12 @@ function App() {
             <PrivateRoute path="/shipment">
                 <Header cart={cart}></Header>
                 <Shipment cart={cart} checkOutItemHandler={checkOutItemHandler} deliveryDetailHandler={deliveryDetailHandler} deliveryDet={deliveryDet} clearCart={clearCart}></Shipment>
+                <Footer></Footer>
             </PrivateRoute>
             <Route path="/orderdone">
               <Header cart={cart}></Header>
               <OrderDone deliveryDet={deliveryDet}></OrderDone>
+              <Footer></Footer>
             </Route>
 
           </Switch>
