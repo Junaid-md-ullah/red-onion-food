@@ -20,9 +20,10 @@ const Shipment = (props) => {
         props.deliveryDetailHandler(data);
     }
     const placedOrderHandler=()=>{
+        setButtonVisible(true);
         const orderDetails={email: auth.user.email, cart:props.cart, shipment:props.deliveryDet};
         console.log(orderDetails);
-        fetch('http://localhost:4200/placeOrder',{
+        fetch('https://intense-spire-01880.herokuapp.com/placeOrder',{
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -37,7 +38,7 @@ const Shipment = (props) => {
           props.clearCart();
 
       })
-      setButtonVisible(true);
+      
     }
     const{deliveryToDoor,RoadNo,flat,address}=props.deliveryDet;
 
@@ -125,7 +126,7 @@ const Shipment = (props) => {
                                 {
                                         orderPlacedId &&
                                         <div>
-                                            <p>Order Id: #{orderPlacedId}</p>
+                                            <h5>Order Id: #{orderPlacedId}</h5>
                                         </div>
                                     }
                                 </div>
@@ -139,7 +140,7 @@ const Shipment = (props) => {
                                          {
                                              orderPlacedId &&
                                              <Link to={"/orderdone/"+orderPlacedId}>
-                                                <button className="btn btn-secondary checkout-btn">Proceed to Checkout</button>
+                                                <button className="btn btn-danger checkout-btn">Proceed to Checkout</button>
                                              </Link>
                                              
                                          }

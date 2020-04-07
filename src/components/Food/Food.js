@@ -9,7 +9,7 @@ const Food = (props) => {
     const [againFood,setAgainFood]=useState([]);
     const selectedFood=againFood.find(food=>food.id==foodId);
     useEffect(()=>{
-        fetch('http://localhost:4200/foods/'+foodId)
+        fetch('https://intense-spire-01880.herokuapp.com/foods/'+foodId)
         .then(res=>res.json())
         .then(data=>{
             if(data){

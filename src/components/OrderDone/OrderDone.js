@@ -3,7 +3,6 @@ import map from '../../../src/Image/map.png';
 import './OrderDone.css';
 import man from '../../Image/Group 1151.png';
 import delivery from '../../Image/Group 1152.png';
-import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 const OrderDone = (props) => {

@@ -30,18 +30,18 @@ const CheckoutForm = () => {
   };
 
   return (
-      <div>
+      <div style={{marginTop:'8px',marginBottom:'8px'}}>
           <h3>Payment Information</h3>
           <form onSubmit={handleSubmit}>
       <CardElement />
-      <button type="submit" disabled={!stripe}>
+      <button className="btn btn-warning" type="submit" disabled={!stripe}>
         Pay
       </button>
       {
-        paymentError && <p>{paymentError}</p>
+        paymentError && <p style={{color:'red'}}>{paymentError}</p>
     }
     {
-        paymentFinished && <p>Payment Successfully</p>
+        paymentFinished && <p style={{color:'green'}}>Payment Successfully</p>
 
     }
     </form>

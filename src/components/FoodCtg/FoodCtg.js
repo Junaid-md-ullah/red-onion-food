@@ -10,7 +10,7 @@ const FoodCtg = (props) => {
         console.log(selectedFoodsCat.length);
 
         useEffect(()=>{
-            fetch('http://localhost:4200/foods')
+            fetch('https://intense-spire-01880.herokuapp.com/foods')
             .then(res=>res.json())
             .then(data=>{
                 setFoods(data);
