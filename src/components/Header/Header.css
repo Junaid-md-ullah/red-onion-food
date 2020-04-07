@@ -4,7 +4,7 @@
 .navbar{
    border:none;
    box-shadow: 0 0.5px 1px lightgray ;
-   position: sticky;
+   position: fixed;
 }
 .navbar-brand img{
     height: 50px;

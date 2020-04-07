@@ -1,13 +1,21 @@
 import React, { useState } from 'react';
 import './FoodCtg.css';
-import foodData from '../../foodData/foodData';
 import { Link } from "react-router-dom";
+import { useEffect } from 'react';
 
 const FoodCtg = (props) => {
-        const [foods,setFoods]=useState(foodData);
+        const [foods,setFoods]=useState([]);
         const[selectedFoodsCat,setSelectedFoodsCat]=useState("lunch");
         const selectedFoods=foods.filter(food=>food.category===selectedFoodsCat);
         console.log(selectedFoodsCat.length);
+
+        useEffect(()=>{
+            fetch('http://localhost:4200/foods')
+            .then(res=>res.json())
+            .then(data=>{
+                setFoods(data);
+            })
+        },[])
 
     return (
         <div className="food-catg-area">

@@ -3,12 +3,21 @@ import map from '../../../src/Image/map.png';
 import './OrderDone.css';
 import man from '../../Image/Group 1151.png';
 import delivery from '../../Image/Group 1152.png';
+import { useState } from 'react';
+import { useParams } from 'react-router-dom';
 
 const OrderDone = (props) => {
+    const {orderPlacedId}=useParams()
+
     return (
         <div>
             <div className="container-ship d-flex justify-content-center">
                 <div className="row img-wrapper d-flex justify-content-center">
+                    <div className="col-md-12  align-items-center" style={{textAlign:'center'}}>
+                        <h3>Thank You for Purchasing</h3>
+                        <h4 style={{textDecoration:'underLine'}}>Order Id #{orderPlacedId}</h4>
+
+                    </div>
                     <div className="col-md-8 img-file justify-content-center">
                     <img src={map} alt=""/>
                     </div>

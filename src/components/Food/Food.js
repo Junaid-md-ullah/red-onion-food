@@ -1,16 +1,27 @@
 import React, { useState, useEffect } from 'react';
 import './Food.css';
-import foodData from '../../foodData/foodData';
 import { useParams } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faCartArrowDown,faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 
 const Food = (props) => {
     const {foodId}=useParams();
-    const selectedFood=foodData.find(food=>food.id==foodId);
+    const [againFood,setAgainFood]=useState([]);
+    const selectedFood=againFood.find(food=>food.id==foodId);
+    useEffect(()=>{
+        fetch('http://localhost:4200/foods/'+foodId)
+        .then(res=>res.json())
+        .then(data=>{
+            if(data){
+            setAgainFood(data);
+            }
+        })
+    },[])
+     
+    
     const [cartQuan,setCartQuan]=useState(1);
     const [isAdded,setAdded]=useState(false);
-
+    
 
     const finalCartHandler=selectedFood=>{
         selectedFood.quantity=cartQuan;
@@ -27,10 +38,10 @@ const Food = (props) => {
                 <div className="row justify-content-between">
                     <div className="col-md-6 wrapper-food">
                         <div className="food-detail-contain">
-                            <h1 align="left">{selectedFood.name}</h1>
-                            <p align="left">{selectedFood.detail}</p>
+                            <h1 align="left">{selectedFood && selectedFood.name}</h1>
+                            <p align="left">{selectedFood && selectedFood.detail}</p>
                             <div className="price-cart d-flex">
-                                <h2 align="left"><strong>${selectedFood.price}</strong></h2>
+                                <h2 align="left"><strong>${selectedFood && selectedFood.price}</strong></h2>
                                 <div className="btn btn-wrap">
                                     <button onClick={()=>setCartQuan(cartQuan<=1? 1:cartQuan-1)} className="lock btn"><strong>-</strong></button>
                                     {cartQuan}
@@ -48,7 +59,7 @@ const Food = (props) => {
                     </div>
                     <div className="col-md-6">
                         <div className="food-img">
-                            <img src={selectedFood.img} alt=""/>
+                            <img src={selectedFood && selectedFood.img} alt=""/>
                         </div>
 
                     </div>

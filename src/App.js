@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import './App.css';
 import Header from './components/Header/Header';
 import Banner from './components/Banner/Banner';
@@ -15,6 +15,9 @@ import Shipment from './components/Shipment/Shipment';
 import OrderDone from './components/OrderDone/OrderDone';
 import Extra from './components/Extra/Extra';
 import Footer from './components/Footer/Footer';
+import Inventory from './components/Inventory/Inventory';
+import Payment from './components/Payment/Payment';
+import CheckoutForm from './components/Payment/Payment';
 
 function App() {
   const [cart,setCart]=useState([]);
@@ -74,14 +77,18 @@ function App() {
 
             <PrivateRoute path="/shipment">
                 <Header cart={cart}></Header>
-                <Shipment cart={cart} checkOutItemHandler={checkOutItemHandler} deliveryDetailHandler={deliveryDetailHandler} deliveryDet={deliveryDet} clearCart={clearCart}></Shipment>
+                <Shipment  cart={cart} checkOutItemHandler={checkOutItemHandler} deliveryDetailHandler={deliveryDetailHandler} deliveryDet={deliveryDet} clearCart={clearCart}></Shipment>
                 <Footer></Footer>
             </PrivateRoute>
-            <Route path="/orderdone">
+            <Route path="/orderdone/:orderPlacedId">
               <Header cart={cart}></Header>
               <OrderDone deliveryDet={deliveryDet}></OrderDone>
               <Footer></Footer>
             </Route>
+            <Route path="/Inventory">
+                <Inventory deliveryDet={deliveryDet}></Inventory>
+            </Route>
+
 
           </Switch>
         </Router>

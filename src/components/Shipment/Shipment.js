@@ -2,11 +2,42 @@ import React, { useEffect } from 'react';
 import {Link} from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import './Shipment.css';
+import { useAuth } from '../Login/use-auth';
+import { useState } from 'react';
+import {loadStripe} from '@stripe/stripe-js';
+import {
+    Elements
+  } from '@stripe/react-stripe-js';
+import CheckoutForm from '../Payment/Payment';
 
 const Shipment = (props) => {
+    const [orderPlacedId,setOrderPlacedId]=useState(null);
+    const [buttonVisible,setButtonVisible]=useState(false);
+    const stripePromise = loadStripe('pk_test_wkQoc6p8qSU5F9tzOuFUHvoh00oUY9tLkK');
     const { register, handleSubmit, watch, errors } = useForm();
+    const auth=useAuth();
     const onSubmit=(data)=>{
         props.deliveryDetailHandler(data);
+    }
+    const placedOrderHandler=()=>{
+        const orderDetails={email: auth.user.email, cart:props.cart, shipment:props.deliveryDet};
+        console.log(orderDetails);
+        fetch('http://localhost:4200/placeOrder',{
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+          // 'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: JSON.stringify(orderDetails) // body data type must match "Content-Type" header
+      })
+      .then(res => res.json())
+      .then(data=>{
+          const orderId=data._id;
+          setOrderPlacedId(orderId);
+          props.clearCart();
+
+      })
+      setButtonVisible(true);
     }
     const{deliveryToDoor,RoadNo,flat,address}=props.deliveryDet;
 
@@ -41,6 +72,7 @@ const Shipment = (props) => {
                             {/* errors will return when field validation fails  */}
                             {errors.address && <span>This field is required</span>}
                             <button className="btn btn-danger shipping-button"> Save & Continue</button>
+                            
                         </form>
                     </div>
                     <div className="col-md-5 offset-md-2">
@@ -79,16 +111,46 @@ const Shipment = (props) => {
                                     <p className="d-flex justify-content-between"><span>Delivery Fee</span> <span>${deliveryFee}</span></p>
                                     <p className="d-flex justify-content-between"><span>Total</span> <span>${finalTotal.toFixed(2)}</span></p>
                                 </div>
-                                {
-                                    deliveryToDoor && RoadNo && flat && address ?
-                                    <Link to="/orderdone">
-                                        <button className="btn btn-danger checkout-btn" onClick={()=>{props.clearCart()}}>Checkout</button>
-                                    </Link>
+                                <div>
                                     
+                                </div>
+                                <div style={{display: orderPlacedId && deliveryToDoor && RoadNo && flat && address && 'none'}}>
+    
+                                <Elements stripe={stripePromise} >
+                                    <CheckoutForm></CheckoutForm>
+                                </Elements>
+        
+                                </div>
+                                <div>
+                                {
+                                        orderPlacedId &&
+                                        <div>
+                                            <p>Order Id: #{orderPlacedId}</p>
+                                        </div>
+                                    }
+                                </div>
+                                {
+                                    deliveryToDoor && RoadNo && flat && address?
+                                     <div>
+                                         {
+                                          !buttonVisible &&  <button className="btn btn-danger checkout-btn" onClick={placedOrderHandler}>Confirm</button>
+                                         }
+                                         
+                                         {
+                                             orderPlacedId &&
+                                             <Link to={"/orderdone/"+orderPlacedId}>
+                                                <button className="btn btn-secondary checkout-btn">Proceed to Checkout</button>
+                                             </Link>
+                                             
+                                         }
+                                     </div>
+                                        
+                                        
                                     :
-                                    <button className="btn btn-secondary checkout-btn" disabled>Nothing To Checkout</button>
+                                    <button className="btn btn-secondary checkout-btn" disabled>Confirm</button>
 
                                 }
+                                
                         
                         </div>
                     </div>
