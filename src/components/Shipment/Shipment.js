@@ -147,7 +147,7 @@ const Shipment = (props) => {
                                         
                                         
                                     :
-                                    <button className="btn btn-secondary checkout-btn" disabled>Confirm</button>
+                                    <button className="btn btn-danger checkout-btn" disabled>Confirm</button>
 
                                 }
                                 
